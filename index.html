@@ -252,7 +252,7 @@ function blip(f){try{if(!ac)return;tone(f,ac.currentTime,.15)}catch(e){}}
 
 /* scene flow */
 const enter={6:initGallery,1:initBalloons,2:()=>{$('#wish').classList.remove('show');$('#blow').classList.remove('hide');$$('#s2 .flame')[0].classList.remove('out')},3:startBubbles,4:typeLetter,5:finale};
-function go(i){moonPass();setPhase(i);timers.forEach(clearTimeout);timers=[];raining=false;cur=i;scenes.forEach((s,j)=>s.classList.toggle('on',j==i));if(enter[i])enter[i]()}
+function go(i){$$('.bub').forEach(b=>{b.style.transition='opacity .25s';b.style.opacity=0;setTimeout(()=>b.remove(),260)});moonPass();setPhase(i);timers.forEach(clearTimeout);timers=[];raining=false;cur=i;scenes.forEach((s,j)=>s.classList.toggle('on',j==i));if(enter[i])enter[i]()}
 $$('[data-next]').forEach(b=>b.onclick=()=>{if(cur==0)startMusic();go(cur==4?6:cur+1)});
 $('#again').onclick=()=>go(0);
 
@@ -309,7 +309,7 @@ const a=document.createTextNode(''),b=document.createElement('span'),bt=document
 const off=[0];for(const c of LETTER)off.push(off[off.length-1]+c.length);const total=off.length-1;let t0=0,n=-1,done=false,ls=0;
 const fin=()=>{if(done)return;done=true;el.onclick=null;a.data=LETTER;b.remove();el.scrollTop=el.scrollHeight;for(let k=0;k<6;k++)later(()=>burst(innerWidth*(.15+Math.random()*.7),innerHeight*(.3+Math.random()*.3),14,'c'),k*120);nb.classList.remove('hide')};
 el.onclick=fin;
-(function step(t){if(done||cur!=4)return;if(!t0)t0=t;const k=Math.max(0,Math.min(total,((t-t0)*.09)|0));if(k!==n){n=k;a.data=LETTER.slice(0,off[k]);bt.data=LETTER.slice(off[k]);if(t-ls>100){ls=t;el.scrollTop=Math.max(0,b.offsetTop-el.clientHeight+70)}}if(k>=total)return fin();requestAnimationFrame(step)})(0)}
+(function step(t){if(done||cur!=4)return;if(!t0){if(!t){requestAnimationFrame(step);return}t0=t+350}const k=Math.max(0,Math.min(total,((t-t0)*.06)|0));if(k!==n){n=k;a.data=LETTER.slice(0,off[k]);bt.data=LETTER.slice(off[k]);if(t-ls>100){ls=t;el.scrollTop=Math.max(0,b.offsetTop-el.clientHeight+70)}}if(k>=total)return fin();requestAnimationFrame(step)})(0)}
 
 /* hanging photo ribbon (final scene) */
 let gpis=[];
