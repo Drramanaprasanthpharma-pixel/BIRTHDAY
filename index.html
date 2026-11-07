@@ -92,7 +92,8 @@ h1,h2{margin:0;font-family:'Dancing Script','Brush Script MT',cursive;font-weigh
 .kp button:active{background:rgba(255,200,120,.35)}
 @media (max-height:680px){.kp button{height:42px}.lockico{width:80px}}
 #stars{position:fixed;inset:0;z-index:1;pointer-events:none}
-.tg{position:absolute;inset:0;animation:twk 3s ease-in-out infinite}
+.tg{position:absolute;inset:0;pointer-events:none;animation:twk 3s ease-in-out infinite}
+#lock .tg{z-index:-1}
 .twk{position:absolute;color:#ffd27a;text-shadow:0 0 8px #ffd27a;pointer-events:none}
 @keyframes twk{50%{opacity:.2}}
 #stack{position:relative;width:min(74vw,290px);height:min(96vw,370px);max-height:50vh}
