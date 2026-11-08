@@ -360,7 +360,7 @@ function cy(s){let h1=0xdeadbeef,h2=0x41c6ce57;for(let i=0,c;i<s.length;i++){c=s
 let code='',lockBusy=false;
 function drawCode(){$('#slots').innerHTML=[0,1,2,3,4,5,6,7].map(i=>`<b>${code[i]||''}</b>${i==1||i==3?'<u>-</u>':''}`).join('')}
 function keyp(k){if(lockBusy)return;if(!TR)setTimeout(initAudio,0);$('#lerr').textContent='';if(k=='⌫')code=code.slice(0,-1);else if(k=='❤'){if(code.length==8)tryCode()}else if(code.length<8){code+=k;if(code.length==8)setTimeout(tryCode,120)}drawCode()}
-function tryCode(){if(lockBusy||code.length<8)return;if(cy(code)==5771353932526124)unlock();else{$('#slots').classList.add('shake');$('#lerr').textContent='Hmm, that’s not it… try our special date 💗';setTimeout(()=>{$('#slots').classList.remove('shake');code='';drawCode()},450)}}
+function tryCode(){if(lockBusy||code.length<8)return;if(cy(code)==5145309766098087)unlock();else{$('#slots').classList.add('shake');$('#lerr').textContent='Hmm, that’s not it… try our special date 💗';setTimeout(()=>{$('#slots').classList.remove('shake');code='';drawCode()},450)}}
 function unlock(){lockBusy=true;wantMusic=true;$('#lock').classList.add('open');startMusic();const x=innerWidth/2,y=innerHeight*.4;burst(x,y,70,'c');burst(x,y,40,'fw');setTimeout(()=>$('#lock').classList.add('gone'),300);setTimeout(()=>{$('#lock').style.display='none'},900)}
 ['1','2','3','4','5','6','7','8','9','⌫','0','❤'].forEach(k=>{const b=document.createElement('button');b.textContent=k;tap(b,()=>keyp(k));$('#kp').appendChild(b)});
 addEventListener('keydown',e=>{if(lockBusy)return;if(/^\d$/.test(e.key))keyp(e.key);else if(e.key=='Backspace')keyp('⌫');else if(e.key=='Enter')keyp('❤')});
